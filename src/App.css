@@ -12,17 +12,22 @@ body {
   --type-third: 'Open Sans', sans-serif;
   --type-first: 'Raleway', sans-serif;
   --type-second: 'Source Sans Pro', sans-serif;
+  --color-first: #6c63ff;
+  --color-second: darkslateblue;
+  --type-third: #9370db;
+  --color-bg: #eee;
   font-family: var(--type-first);
 }
 
-h1,
-h2 {
+h1 {
   font-family: var(--type-first);
   margin: 0px;
 }
 
+h2,
 h3,
 h4,
+label,
 p {
   font-family: var(--type-second);
   word-break: break-all;
@@ -47,6 +52,10 @@ input {
   font-size: 1rem;
   font-family: var(--type-first);
   color: #333;
+}
+
+button {
+  color: #eee;
 }
 
 a {

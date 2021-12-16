@@ -32,35 +32,17 @@
   justify-content: space-evenly;
 }
 
-.submits button {
+.submits a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 1rem;
   color: #eee;
+  min-width: 9rem;
 }
 
-button {
-  font-size: 1rem;
-  font-family: var(--type-first);
-  cursor: pointer;
-  border: none;
-  border-radius: 0.4rem;
-  background: #575a89;
-  min-width: 8rem;
-  padding: 0.8rem 1.2rem;
-  box-sizing: border-box;
-  transition: 0.1s;
-}
-
-button:hover,
-button:focus {
-  outline: none;
-  background: #6c63ff;
-  color: white;
-  box-shadow: 0 0 0 3px #575a89, 0 0 0 4px darkslateblue;
-}
-
-button:disabled {
-  opacity: 0.5;
-  cursor: wait;
+.submits a svg {
+  margin-right: 0.4rem;
 }
 
 @media (max-width: 40rem) {

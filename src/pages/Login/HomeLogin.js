@@ -1,5 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './HomeLogin.module.css';
+import stylesBtn from '../../components/Forms/Button.module.css';
+import { BiLogIn } from 'react-icons/bi';
 
 const HomeLogin = () => {
   return (
@@ -11,8 +14,13 @@ const HomeLogin = () => {
           empresa em um só lugar.
         </p>
         <div className={styles.submits}>
-          <button>Login</button>
-          <button>Cadastrar</button>
+          <Link className={stylesBtn.button} to="/login">
+            <BiLogIn />
+            Login
+          </Link>
+          <Link className={stylesBtn.button} to="/">
+            Cadastre-se
+          </Link>
         </div>
       </div>
     </section>
