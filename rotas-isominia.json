@@ -1,0 +1,426 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2021-12-15T13:54:33.076Z",
+  "__export_source": "insomnia.desktop.app:v2021.6.0",
+  "resources": [
+    {
+      "_id": "req_ffcb4de94af04cdf928444d5e3220067",
+      "parentId": "fld_b3d76c762e35433ea93ef6a266135478",
+      "modified": 1639576462131,
+      "created": 1639507431754,
+      "url": "{{ _.baseURL }}/session",
+      "name": "session",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"email\": \"email@email.com\",\n\t\"password\": \"senhadificil123\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_7e2007ab34994619b6858172028d8716"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1623719584105,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_b3d76c762e35433ea93ef6a266135478",
+      "parentId": "wrk_82b520a27f8a460cb5b594bf8e3156c0",
+      "modified": 1639507514414,
+      "created": 1639507411098,
+      "name": "user",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1000000000,
+      "_type": "request_group"
+    },
+    {
+      "_id": "wrk_82b520a27f8a460cb5b594bf8e3156c0",
+      "parentId": null,
+      "modified": 1639507372094,
+      "created": 1639507372094,
+      "name": "Tellar API",
+      "description": "",
+      "scope": "design",
+      "_type": "workspace"
+    },
+    {
+      "_id": "req_ee6fdff7f14c44c288682725d7935bd2",
+      "parentId": "fld_b3d76c762e35433ea93ef6a266135478",
+      "modified": 1639576423919,
+      "created": 1639507411101,
+      "url": "{{ _.baseURL }}/users",
+      "name": "list",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.token }}",
+        "disabled": false
+      },
+      "metaSortKey": -1623719584055,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_3a355f8c04714dc28f7c5235ad5a0948",
+      "parentId": "fld_b3d76c762e35433ea93ef6a266135478",
+      "modified": 1639576131545,
+      "created": 1639507411109,
+      "url": "{{ _.baseURL }}/users",
+      "name": "create",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"name\": \"Administrador\",\n\t\"email\": \"email@email.com\",\n\t\"password\": \"senhadificil123\",\n\t\"is_admin\": true\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_726e3771b91c4e78bc316b545de6df48"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.token }}",
+        "disabled": false
+      },
+      "metaSortKey": -1623719584005,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_887dfe073a7348d8bab4d0210b8b0701",
+      "parentId": "fld_b3d76c762e35433ea93ef6a266135478",
+      "modified": 1639576157526,
+      "created": 1639507411112,
+      "url": "{{ _.baseURL }}/users/2198638f-7f79-40b5-80fd-dd2c85a50843",
+      "name": "update",
+      "description": "",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"name\": \"Admin\",\n\t\"email\": \"email@email.com\",\n\t\"is_admin\": true\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_726e3771b91c4e78bc316b545de6df48"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.token }}",
+        "disabled": false
+      },
+      "metaSortKey": -1623719583980,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_5a14714aed7c4ffb9a0934088accc106",
+      "parentId": "fld_b3d76c762e35433ea93ef6a266135478",
+      "modified": 1639576417440,
+      "created": 1639507411126,
+      "url": "{{ _.baseURL }}/users/change-password/e8be6330-1b6a-4bb9-ab48-823c7fcedf5b",
+      "name": "update password",
+      "description": "",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"password\": \"senhadificil123\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_726e3771b91c4e78bc316b545de6df48"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.token }}",
+        "disabled": false
+      },
+      "metaSortKey": -1623719583973.75,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_205475b9ffda41009592e60f152e7f4b",
+      "parentId": "fld_b3d76c762e35433ea93ef6a266135478",
+      "modified": 1639533052696,
+      "created": 1639507411118,
+      "url": "{{ _.baseURL }}/users/0379ec4c-4079-45f3-a8b3-417067f7e90f",
+      "name": "delete",
+      "description": "",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.token }}",
+        "disabled": true
+      },
+      "metaSortKey": -1623719583967.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_c20e6af67911465686b9ab3f94560695",
+      "parentId": "fld_828ea8f42cd6421eb91bd7e75d32ee8a",
+      "modified": 1639575509552,
+      "created": 1639529277518,
+      "url": "{{ _.baseURL }}/companies",
+      "name": "list",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.token }}",
+        "disabled": false
+      },
+      "metaSortKey": -1623719584055,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_828ea8f42cd6421eb91bd7e75d32ee8a",
+      "parentId": "wrk_82b520a27f8a460cb5b594bf8e3156c0",
+      "modified": 1639529277508,
+      "created": 1639529277508,
+      "name": "company",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -999999950,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_9fcd2f7732244a37a11825a541603341",
+      "parentId": "fld_828ea8f42cd6421eb91bd7e75d32ee8a",
+      "modified": 1639575128412,
+      "created": 1639529277529,
+      "url": "{{ _.baseURL }}/companies",
+      "name": "create",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"name\": \"AGIL ENGENHARIA DE TELECOMUNICACOES EIRELI\",\n\t\"fantasy_name\": \"ENG. ALAN ARAUJO - ENGENHARIA DE TELECOMUNICACOES\",\n\t\"cnpj\": \"25.315.224/0001-13\",\n\t\"opening_date\": \"2016-07-28\",\n\t\"email\": \"alanaraujo.eng@gmail.com\",\n\t\"telephone\": \"(88) 9 9352-8826\",\n\t\"city\": \"Sobral\",\n\t\"state\": \"CE\",\n\t\"zip_code\": \"62010-160\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_726e3771b91c4e78bc316b545de6df48"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.token }}",
+        "disabled": false
+      },
+      "metaSortKey": -1623719584005,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_efe39421a0b4406aa5ecec99376baeb2",
+      "parentId": "fld_828ea8f42cd6421eb91bd7e75d32ee8a",
+      "modified": 1639532991258,
+      "created": 1639529277531,
+      "url": "{{ _.baseURL }}/companies/1",
+      "name": "update",
+      "description": "",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"name\": \"Agil Engenharia 2\",\n\t\"fantasy_name\": \"Alan Araújo Engenharia\",\n\t\"cnpj\": \"0123456789\",\n\t\"opening_date\": \"2021-12-02T11:00:00.895Z\",\n\t\"email\": \"willian.s.praciano@gmail.com\",\n\t\"telephone\": \"(88) 9 99630-4042\",\n\t\"city\": \"Sobral\",\n\t\"state\": \"CE\",\n\t\"zip_code\": \"62010-820\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_726e3771b91c4e78bc316b545de6df48"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.token }}",
+        "disabled": false
+      },
+      "metaSortKey": -1623719583980,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_2ea4549c61f640719e3f2a3eb6d7d8a7",
+      "parentId": "fld_828ea8f42cd6421eb91bd7e75d32ee8a",
+      "modified": 1639530480018,
+      "created": 1639529277534,
+      "url": "{{ _.baseURL }}/companies/1",
+      "name": "delete",
+      "description": "",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.token }}",
+        "disabled": true
+      },
+      "metaSortKey": -1623719583967.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "env_dd892fea05549a7e438002066c5b8b2528dc6034",
+      "parentId": "wrk_82b520a27f8a460cb5b594bf8e3156c0",
+      "modified": 1639507520871,
+      "created": 1639507372099,
+      "name": "Base Environment",
+      "data": {},
+      "dataPropertyOrder": {},
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1639507372099,
+      "_type": "environment"
+    },
+    {
+      "_id": "jar_dd892fea05549a7e438002066c5b8b2528dc6034",
+      "parentId": "wrk_82b520a27f8a460cb5b594bf8e3156c0",
+      "modified": 1639507372101,
+      "created": 1639507372101,
+      "name": "Default Jar",
+      "cookies": [],
+      "_type": "cookie_jar"
+    },
+    {
+      "_id": "spc_f298fce3e5404e14802cca132d1bf14c",
+      "parentId": "wrk_82b520a27f8a460cb5b594bf8e3156c0",
+      "modified": 1639507372095,
+      "created": 1639507372095,
+      "fileName": "Tellar API",
+      "contents": "",
+      "contentType": "yaml",
+      "_type": "api_spec"
+    },
+    {
+      "_id": "env_6e923bd63cbb430184434cd80c89e670",
+      "parentId": "env_dd892fea05549a7e438002066c5b8b2528dc6034",
+      "modified": 1639570772077,
+      "created": 1639507525974,
+      "name": "Development",
+      "data": {
+        "baseURL": "http://localhost:3333",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2Mzk1MDc3NTYsImV4cCI6MTY0MDExMjU1Niwic3ViIjoiNzE0OTU5ZmQtY2U3NC00NDc3LWJmZTUtNTg4MzBlNTFjNmUxIn0.Czde56O8J2qg0bHsfZVp9UAaXLoKJt7mchNsBNOfTo4"
+      },
+      "dataPropertyOrder": { "&": ["baseURL", "token"] },
+      "color": "#00ff2a",
+      "isPrivate": false,
+      "metaSortKey": 1639507525974,
+      "_type": "environment"
+    },
+    {
+      "_id": "env_bb8142e8f2a74482bcc7412ab3c229a8",
+      "parentId": "env_dd892fea05549a7e438002066c5b8b2528dc6034",
+      "modified": 1639576449684,
+      "created": 1639570764919,
+      "name": "Deploy",
+      "data": {
+        "baseURL": "http://52.67.103.220:7775",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2Mzk1NzQ4NDAsImV4cCI6MTY0MDE3OTY0MCwic3ViIjoiZThiZTYzMzAtMWI2YS00YmI5LWFiNDgtODIzYzdmY2VkZjViIn0.dNcjRF8m2GuuwPqg_m9T9QqRnBtZdowKNAq2ylHmduU"
+      },
+      "dataPropertyOrder": { "&": ["baseURL", "token"] },
+      "color": "#9238ff",
+      "isPrivate": false,
+      "metaSortKey": 1639570764919,
+      "_type": "environment"
+    }
+  ]
+}
