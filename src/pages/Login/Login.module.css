@@ -75,7 +75,7 @@ h1 {
   text-align: center;
 }
 
-@media (max-width: 40rem) {
+@media (max-width: 50rem) {
   .login {
     grid-template-columns: 1fr;
     padding: 0;

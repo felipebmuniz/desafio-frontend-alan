@@ -24,7 +24,7 @@ const Login = () => {
           <div className={styles.cadastro}>
             <span>
               <h2 className={styles.subtitle}>Cadastre-se</h2>
-              <p>Ainda não possui conta? Cadastre-se no site.</p>
+              <p>Não possui conta? Cadastre-se</p>
             </span>
 
             <span className={styles.cadastrar}>
