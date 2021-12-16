@@ -22,11 +22,16 @@ const Login = () => {
           </Link>
 
           <div className={styles.cadastro}>
-            <h2 className={styles.subtitle}>Cadastre-se</h2>
-            <p>Ainda não possui conta? Cadastre-se no site.</p>
-            <Link className={stylesBtn.button} to="/login">
-              Cadastro
-            </Link>
+            <span>
+              <h2 className={styles.subtitle}>Cadastre-se</h2>
+              <p>Ainda não possui conta? Cadastre-se no site.</p>
+            </span>
+
+            <span className={styles.cadastrar}>
+              <Link className={stylesBtn.button} to="/login">
+                Cadastro
+              </Link>
+            </span>
           </div>
         </div>
       </div>
