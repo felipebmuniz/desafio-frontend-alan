@@ -34,6 +34,7 @@
 
 .submits button {
   margin: 1rem;
+  color: #eee;
 }
 
 button {
@@ -43,7 +44,6 @@ button {
   border: none;
   border-radius: 0.4rem;
   background: #575a89;
-  color: #eee;
   min-width: 8rem;
   padding: 0.8rem 1.2rem;
   box-sizing: border-box;

@@ -1,9 +1,25 @@
 .footer {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
   background: #575a89;
   height: 8rem;
   text-align: center;
+  color: #eee;
+}
+
+.social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social li {
+  margin: 0 1rem;
+}
+
+.social a svg {
+  cursor: pointer;
+  font-size: 1.5rem;
   color: #eee;
 }
