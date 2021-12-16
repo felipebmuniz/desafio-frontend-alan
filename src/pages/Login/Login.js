@@ -7,7 +7,7 @@ import stylesBtn from '../../components/Forms/Button.module.css';
 
 const Login = () => {
   return (
-    <section className={styles.login}>
+    <section className={`${styles.login} animeLeft`}>
       <div className={styles.container}>
         <div className={styles.form}>
           <form>
