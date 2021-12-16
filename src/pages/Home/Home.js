@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React from 'react';
 import api from '../../services/api';
 import styles from './Home.module.css';
