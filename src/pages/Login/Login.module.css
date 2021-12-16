@@ -37,6 +37,7 @@ h1 {
 .perdeu {
   display: inline-block;
   padding: 0.5rem 0;
+  text-decoration: underline solid;
   line-height: 1;
 }
 
