@@ -28,12 +28,27 @@ const Home = () => {
       <section className={styles.home}>
         <h1 className="title">Suas Companhias</h1>
         <h2>Listagem das Companhias</h2>
-        <Select
-          type="Cidade"
-          options={['Ibiapina', 'Sobral', 'Ubajara']}
-          value={cidade}
-          setValue={setCidade}
-        />
+        <div className={styles.filter}>
+          <Select
+            type="Cidade"
+            options={['Ibiapina', 'Sobral', 'Ubajara']}
+            value={cidade}
+            setValue={setCidade}
+          />
+          <Select
+            type="Estado"
+            options={['Ceará', 'Rio Grande do Norte', 'Piauí']}
+            value={cidade}
+            setValue={setCidade}
+          />
+          <Select
+            type="Região"
+            options={['Nordeste', 'Sudeste', 'Norte']}
+            value={cidade}
+            setValue={setCidade}
+          />
+        </div>
+
         <div className={styles.container}>
           {companies.map((company) => (
             <div className={styles.company} key={company.id}>
