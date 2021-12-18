@@ -11,7 +11,7 @@ const LoginCreate = () => {
   const name = useForm();
   const email = useForm('email');
   const password = useForm('password');
-  const { userLogin, loading } = React.useContext(UserContext);
+  const { userLogin, error, loading } = React.useContext(UserContext);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -34,6 +34,7 @@ const LoginCreate = () => {
         ) : (
           <Button>Cadastrar</Button>
         )}
+        {error && <p>{error}</p>}
       </form>
 
       <div className={styles.section}>
