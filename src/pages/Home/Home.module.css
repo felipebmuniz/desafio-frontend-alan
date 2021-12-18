@@ -5,12 +5,18 @@
   padding-top: 6rem;
 }
 
+.filter {
+  display: flex;
+  padding: 1rem;
+}
+
 .container {
   display: grid;
   gap: 2rem;
   grid-template-columns: 1fr 1fr 1fr;
-  padding-top: 1rem;
-  padding-bottom: 2rem;
+  padding: 1rem 2rem 1rem 1rem;
+  border: 2px solid #eee;
+  border-radius: 0.2rem;
 }
 
 .company {
@@ -21,6 +27,14 @@
   background-color: #eee;
   padding: 1rem;
   border-radius: 0.2rem;
+  transition: 0.1s;
+}
+
+.company:hover {
+  cursor: pointer;
+  outline: none;
+  background-color: white;
+  box-shadow: 0 0 0 3px #6c63ff, 0 0 0 4px darkslateblue;
 }
 
 @media (max-width: 40rem) {

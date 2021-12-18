@@ -11,16 +11,16 @@ const Home = () => {
   const { data } = React.useContext(UserContext);
   const [cidade, setCidade] = React.useState('');
 
-  React.useEffect(async () => {
+  React.useEffect(() => {
     // setUsers(data);
     console.log(data);
-    await api
+    api
       .get('companies')
       .then(({ data }) => setCompanies(data))
       .catch((err) => {
         console.error('ops! ocorreu um erro' + err);
       });
-  }, []);
+  }, [data]);
 
   return (
     <>

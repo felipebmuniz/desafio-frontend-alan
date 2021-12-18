@@ -11,10 +11,10 @@ const Header = () => {
     <header className={styles.header}>
       <nav className={styles.nav}>
         <Link to="/home">GroupComp</Link>
-        <a onClick={userLogout}>
+        <span onClick={userLogout}>
           <p>Sair</p>
           <BiLogOut />
-        </a>
+        </span>
       </nav>
     </header>
   );
