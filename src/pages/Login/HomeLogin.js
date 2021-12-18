@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './HomeLogin.module.css';
 import stylesBtn from '../../components/Forms/Button.module.css';
-import { BiLogIn } from 'react-icons/bi';
+import { FiLogIn } from 'react-icons/fi';
 
 const HomeLogin = () => {
   return (
@@ -15,7 +15,7 @@ const HomeLogin = () => {
         </p>
         <div className={styles.submits}>
           <Link className={stylesBtn.button} to="/login">
-            <BiLogIn />
+            <FiLogIn />
             Login
           </Link>
           <Link className={stylesBtn.button} to="/login/cadastro">

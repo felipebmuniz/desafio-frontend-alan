@@ -23,27 +23,26 @@ export const UserStrorage = ({ children }) => {
     [navigate],
   );
 
-  // React.useEffect(() => {
-  //   async function autoLogin() {
-  //     const token = window.localStorage.getItem('token');
-  //     if (token) {
-  //       try {
-  //         setError(null);
-  //         setLoading(true);
-
-  //         if (!response.ok) throw new Error('Token inválido');
-  //         await getUser(token);
-  //       } catch (err) {
-  //         userLogout();
-  //       } finally {
-  //         setLoading(false);
-  //       }
-  //     } else {
-  //       setLoading(false);
-  //     }
-  //   }
-  //   autoLogin();
-  // }, [userLogout]);'';;
+  React.useEffect(() => {
+    async function autoLogin() {
+      const token = window.localStorage.getItem('token');
+      if (token) {
+        try {
+          setError(null);
+          setLoading(true);
+          // if (!response.ok) throw new Error('Token inválido');
+          await getUser(token);
+        } catch (err) {
+          userLogout();
+        } finally {
+          setLoading(false);
+        }
+      } else {
+        setLoading(false);
+      }
+    }
+    autoLogin();
+  }, [userLogout]);
 
   async function getUser(token) {
     await api

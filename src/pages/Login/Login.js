@@ -1,11 +1,15 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import LoginAccess from './LoginAccess';
 import NotFound from '../NotFound';
 import LoginCreate from './LoginCreate';
 import styles from './Login.module.css';
+import { UserContext } from '../../UserContext';
 
 const Login = () => {
+  const { login } = React.useContext(UserContext);
+
+  if (login === true) return <Navigate to="/home" />;
   return (
     <section className={`${styles.login} animeLeft`}>
       <div className={styles.container}>

@@ -12,7 +12,7 @@
   padding: 1rem;
 }
 
-.filterBtn {
+.ActionBtn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,8 +29,8 @@
   transition: 0.1s;
 }
 
-.filterBtn:hover,
-.filterBtn:focus {
+.ActionBtn:hover,
+.ActionBtn:focus {
   outline: none;
   color: white;
   box-shadow: 0 0 0 3px #6c63ff, 0 0 0 4px darkslateblue;
@@ -39,7 +39,7 @@
 .container {
   display: grid;
   grid-template-columns: auto auto auto;
-  border: 2px solid #eee;
+  border-top: 2px solid #eee;
   border-bottom: 2px solid #eee;
   border-radius: 0.2rem;
   margin: 0 1rem;

@@ -20,7 +20,7 @@ const Home = () => {
         console.error('ops! ocorreu um erro' + err);
       });
     console.log(companies);
-  }, [data]);
+  }, [data, companies]);
 
   function filterCompanies() {}
 
@@ -49,12 +49,24 @@ const Home = () => {
             value={cidade}
             setValue={setCidade}
           />
-          <span className={styles.filterBtn} onClick={filterCompanies}>
+          <span className={styles.ActionBtn} onClick={filterCompanies}>
             <FiFilter />
           </span>
         </div>
 
         <div className={styles.container}>
+          {companies.map((company) => (
+            <div className={styles.company} key={company.id}>
+              <h4>{company.fantasy_name}</h4>
+              <p>{company.name}</p>
+              <p>CNPJ: {company.cnpj}</p>
+              <p>Email: {company.email}</p>
+              <p>Contato: {company.telephone}</p>
+              <p>
+                {company.city} / {company.state} - {company.zip_code}
+              </p>
+            </div>
+          ))}
           {companies.map((company) => (
             <div className={styles.company} key={company.id}>
               <h4>{company.fantasy_name}</h4>
