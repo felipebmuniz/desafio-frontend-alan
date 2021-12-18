@@ -18,7 +18,7 @@ const HomeLogin = () => {
             <BiLogIn />
             Login
           </Link>
-          <Link className={stylesBtn.button} to="/">
+          <Link className={stylesBtn.button} to="/login/cadastro">
             Cadastre-se
           </Link>
         </div>
