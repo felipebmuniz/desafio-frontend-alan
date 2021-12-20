@@ -10,7 +10,7 @@ import { UserContext } from '../../UserContext';
 const LoginAccess = () => {
   const email = useForm('email');
   const password = useForm();
-  const { userLogin, loading } = React.useContext(UserContext);
+  const { userLogin, error, loading } = React.useContext(UserContext);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -29,6 +29,11 @@ const LoginAccess = () => {
           <Button disabled>Entrando...</Button>
         ) : (
           <Button>Entrar</Button>
+        )}
+        {error && (
+          <p style={{ color: '#f31', margin: '1rem 0' }}>
+            Email ou senha inválidos.
+          </p>
         )}
       </form>
 

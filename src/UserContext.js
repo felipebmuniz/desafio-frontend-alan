@@ -6,6 +6,8 @@ export const UserContext = React.createContext();
 
 export const UserStrorage = ({ children }) => {
   const [data, setData] = React.useState(null);
+  const [session, setSession] = React.useState(null);
+  // const [userSession, SetUserSession] = React.useState(null);
   const [login, setLogin] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
@@ -14,6 +16,7 @@ export const UserStrorage = ({ children }) => {
   const userLogout = React.useCallback(
     async function () {
       setData(null);
+      setSession(null);
       setError(null);
       setLoading(false);
       setLogin(false);
@@ -32,6 +35,7 @@ export const UserStrorage = ({ children }) => {
           setLoading(true);
           // if (!response.ok) throw new Error('Token inválido');
           await getUser(token);
+          // sessionUser();
         } catch (err) {
           userLogout();
         } finally {
@@ -45,12 +49,10 @@ export const UserStrorage = ({ children }) => {
   }, [userLogout]);
 
   async function getUser(token) {
-    await api
-      .get('users')
-      .then(({ data }) => setData(data))
-      .catch((err) => {
-        console.error('ops! ocorreu um erro' + err);
-      });
+    const dataRes = await api.get('users').catch((err) => {
+      console.error('ops! ocorreu um erro' + err);
+    });
+    setData(dataRes.data);
     setLogin(true);
   }
 
@@ -58,15 +60,18 @@ export const UserStrorage = ({ children }) => {
     try {
       setError(null);
       setLoading(true);
-      const tokenRes = await api.post('session', {
+      const dataRes = await api.post('session', {
         email,
         password,
       });
-      if (tokenRes.status !== 200)
-        throw new Error(`Error: ${tokenRes.statusText}`);
-      const { token } = await tokenRes.data;
+      if (dataRes.status !== 200)
+        throw new Error(`Error: ${dataRes.statusText}`);
+      const { token } = await dataRes.data;
+      const { user } = await dataRes.data;
       window.localStorage.setItem('token', token);
+      setSession(user);
       await getUser(token);
+      // sessionUser();
       navigate('/home');
     } catch (err) {
       setError(err.message);
@@ -76,11 +81,29 @@ export const UserStrorage = ({ children }) => {
     }
   }
 
+  // function sessionUser() {
+  //   const user = data.filter((user) => user.email === session.email);
+  //   SetUserSession(user);
+  // }
+
   return (
     <UserContext.Provider
-      value={{ userLogin, userLogout, data, login, loading, error }}
+      value={{
+        userLogin,
+        userLogout,
+        data,
+        session,
+        // userSession,
+        login,
+        loading,
+        error,
+      }}
     >
       {children}
     </UserContext.Provider>
   );
 };
+
+// Modificar a validação do usuário para ser via token
+// Não possuí uma rota para a autenticaç~ao do token
+// Atualmente passando um filter para verificar o usuário que está sendo logado

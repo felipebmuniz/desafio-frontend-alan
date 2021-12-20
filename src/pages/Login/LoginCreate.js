@@ -6,6 +6,7 @@ import styles from './Login.module.css';
 import stylesBtn from '../../components/Forms/Button.module.css';
 import useForm from '../../hooks/useForm';
 import { UserContext } from '../../UserContext';
+import api from '../../services/api';
 
 const LoginCreate = () => {
   const name = useForm();
@@ -16,8 +17,17 @@ const LoginCreate = () => {
   async function handleSubmit(event) {
     event.preventDefault();
     if (email.validate() && password.validate()) {
+      const postUser = await api.post('users', {
+        name: name.value,
+        email: email.value,
+        password: password.value,
+        is_admin: true,
+      });
+      console.log(name.value);
       console.log(email.value);
       console.log(password.value);
+      console.log(postUser);
+      if (postUser.status !== 200) Error(`Error: ${postUser.statusText}`);
       userLogin(email.value, password.value);
     }
   }
@@ -34,7 +44,7 @@ const LoginCreate = () => {
         ) : (
           <Button>Cadastrar</Button>
         )}
-        {error && <p>{error}</p>}
+        {error && <p style={{ color: '#f31', margin: '1rem 0' }}>{error}</p>}
       </form>
 
       <div className={styles.section}>

@@ -8,7 +8,7 @@
 
 .filter {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr auto;
+  grid-template-columns: auto auto auto auto;
   padding: 1rem;
 }
 
@@ -36,6 +36,23 @@
   box-shadow: 0 0 0 3px #6c63ff, 0 0 0 4px darkslateblue;
 }
 
+.content {
+  display: grid;
+  grid-template-rows: auto auto;
+}
+
+.addContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  align-items: initial;
+}
+
+.none {
+  display: none;
+}
+
 .container {
   display: grid;
   grid-template-columns: auto auto auto;
@@ -43,6 +60,24 @@
   border-bottom: 2px solid #eee;
   border-radius: 0.2rem;
   margin: 0 1rem;
+}
+
+.addCompany {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 0.2rem;
+  box-shadow: 0 0 0 3px #eee, 0 0 0 4px gray;
+  transition: 0.1s;
+}
+
+.addCompany:hover {
+  cursor: pointer;
+  outline: none;
 }
 
 .company {
@@ -64,11 +99,21 @@
   box-shadow: 0 0 0 3px #6c63ff, 0 0 0 4px darkslateblue;
 }
 
+.crud {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 1rem;
+}
+
 @media (max-width: 40rem) {
   .container {
     grid-template-columns: 1fr;
   }
   .filter {
     grid-template-columns: 1fr;
+  }
+  .addContainer {
+    padding-right: 0;
   }
 }
