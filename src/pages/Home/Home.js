@@ -33,7 +33,7 @@ const Home = () => {
       console.error('ops! ocorreu um erro' + err);
     });
     setValue(response.data);
-    console.log(response.data);
+    // console.log(response.data);
   }
 
   async function POST_COMPANY(value) {
