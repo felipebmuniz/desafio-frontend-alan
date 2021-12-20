@@ -12,41 +12,9 @@
   padding: 1rem;
 }
 
-.ActionBtn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  cursor: pointer;
-  border: none;
-  border-radius: 0.2rem;
-  background: var(--color-second);
-  color: #eee;
-  min-width: 4rem;
-  margin: 0.5rem;
-  padding: 0.8rem 1.2rem;
-  box-sizing: border-box;
-  transition: 0.1s;
-}
-
-.ActionBtn:hover,
-.ActionBtn:focus {
-  outline: none;
-  color: white;
-  box-shadow: 0 0 0 3px #6c63ff, 0 0 0 4px darkslateblue;
-}
-
 .content {
   display: grid;
   grid-template-rows: auto auto;
-}
-
-.addContainer {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  width: 100%;
-  align-items: initial;
 }
 
 .none {
@@ -60,24 +28,6 @@
   border-bottom: 2px solid #eee;
   border-radius: 0.2rem;
   margin: 0 1rem;
-}
-
-.addCompany {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-  padding: 1rem;
-  margin: 1rem;
-  border-radius: 0.2rem;
-  box-shadow: 0 0 0 3px #eee, 0 0 0 4px gray;
-  transition: 0.1s;
-}
-
-.addCompany:hover {
-  cursor: pointer;
-  outline: none;
 }
 
 .company {
@@ -114,6 +64,11 @@
     grid-template-columns: 1fr;
   }
   .addContainer {
+    justify-content: center;
     padding-right: 0;
+  }
+
+  .ActionBtn {
+    width: 50%;
   }
 }

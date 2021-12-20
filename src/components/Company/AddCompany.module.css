@@ -1,0 +1,17 @@
+.addCompany {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 0.2rem;
+  box-shadow: 0 0 0 3px #eee, 0 0 0 4px gray;
+  transition: 0.1s;
+}
+
+.addCompany:hover {
+  cursor: pointer;
+  outline: none;
+}
