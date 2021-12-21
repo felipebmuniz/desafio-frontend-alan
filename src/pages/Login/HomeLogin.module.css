@@ -8,7 +8,8 @@
 .hello::before {
   content: '';
   display: block;
-  background: url('../../assets/programming.svg') no-repeat center center;
+  background: url('../../assets/undraw_creation_process.svg') no-repeat center
+    center;
   background-size: contain;
 }
 
@@ -20,7 +21,7 @@
   padding: 0 1rem;
   font-size: 1.2rem;
   text-align: center;
-  background-color: #eee;
+  background-color: var(--color-bg);
 }
 
 .submits {
@@ -37,7 +38,7 @@
   align-items: center;
   justify-content: center;
   margin: 1rem;
-  color: #eee;
+  color: var(--color-bg);
   min-width: 9rem;
 }
 

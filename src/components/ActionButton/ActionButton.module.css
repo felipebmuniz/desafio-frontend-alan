@@ -7,7 +7,7 @@
   border: none;
   border-radius: 0.2rem;
   background: var(--color-second);
-  color: #eee;
+  color: var(--color-bg);
   min-width: 4rem;
   margin: 0.5rem;
   padding: 0.8rem 1.2rem;
@@ -26,8 +26,8 @@
 .ActionBtn:hover,
 .ActionBtn:focus {
   outline: none;
-  color: white;
-  box-shadow: 0 0 0 3px #6c63ff, 0 0 0 4px darkslateblue;
+  color: var(--color-form);
+  box-shadow: 0 0 0 3px var(--color-shadow), 0 0 0 4px var(--color-border);
 }
 
 @media (max-width: 40rem) {

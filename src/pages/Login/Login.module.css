@@ -8,7 +8,8 @@
 .login::before {
   content: '';
   display: block;
-  background: url('../../assets/programming.svg') no-repeat center center;
+  background: url('../../assets/undraw_creation_process.svg') no-repeat center
+    center;
   background-size: contain;
 }
 
@@ -19,11 +20,11 @@
   justify-content: center;
   padding: 1rem 1rem;
   font-size: 1.2rem;
-  background-color: #eee;
+  background-color: var(--color-bg);
 }
 
 .form {
-  background-color: white;
+  background-color: var(--color-form);
   border-radius: 0.2rem;
   padding: 0 2rem;
   padding-top: 1rem;
@@ -42,7 +43,7 @@ h1 {
 }
 
 .perdeu:hover {
-  color: #6c63ff;
+  color: var(--color-first);
 }
 
 .subtitle {
@@ -72,7 +73,7 @@ h1 {
 }
 
 .sub a {
-  color: #eee;
+  color: var(--color-bg);
   text-align: center;
 }
 

@@ -12,10 +12,14 @@ body {
   --type-third: 'Open Sans', sans-serif;
   --type-first: 'Raleway', sans-serif;
   --type-second: 'Source Sans Pro', sans-serif;
-  --color-first: #6c63ff;
-  --color-second: darkslateblue;
-  --type-third: #9370db;
+  --color-first: #ff6363;
+  --color-second: #ec3d3d;
+  --color-third: #c92f2f;
   --color-bg: #eee;
+  --color-form: white;
+  --color-shadow: #ff6363;
+  --color-border: #ec3d3d;
+  --color-label: #eee;
   font-family: var(--type-first);
 }
 

@@ -2,10 +2,10 @@
   display: grid;
   grid-template-columns: 1fr;
   align-items: center;
-  background: #575a89;
+  background: var(--color-third);
   height: 8rem;
   text-align: center;
-  color: white;
+  color: var(--color-bg);
 }
 
 .social {
@@ -21,5 +21,5 @@
 .social a svg {
   cursor: pointer;
   font-size: 1.5rem;
-  color: white;
+  color: var(--color-bg);
 }
