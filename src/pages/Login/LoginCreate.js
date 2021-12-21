@@ -23,10 +23,7 @@ const LoginCreate = () => {
         password: password.value,
         is_admin: true,
       });
-      console.log(name.value);
-      console.log(email.value);
-      console.log(password.value);
-      console.log(postUser);
+
       if (postUser.status !== 200) Error(`Error: ${postUser.statusText}`);
       userLogin(email.value, password.value);
     }

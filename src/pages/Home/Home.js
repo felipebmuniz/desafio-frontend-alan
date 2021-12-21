@@ -2,45 +2,85 @@ import React from 'react';
 import Select from '../../components/Forms/Select';
 import Header from '../../components/Header/Header';
 import ActionButton from '../../components/ActionButton/ActionButton';
-// import { UserContext } from '../../UserContext';
-import styles from './Home.module.css';
 import useForm from '../../hooks/useForm';
 import {
   DLETE_COMPANY,
   EDIT_COMPANY,
+  GET_CNPJ,
   GET_COMPANIES,
   POST_COMPANY,
 } from '../../services/endpointsCompany';
 import AddCompany from '../../components/Company/AddCompany';
+import styles from './Home.module.css';
+
+function converteAbertura(opening) {
+  const reData = opening.split('T').slice(0, -1);
+  return reData[0].split('-').reverse().join('/');
+}
 
 const Home = () => {
-  // const { data, session, userSession } = React.useContext(UserContext);
-  // const [user, setUser] = React.useState([]);
   const [companies, setCompanies] = React.useState([]);
   const [addCompany, setAddCompany] = React.useState(false);
-
-  const refAdd = React.useRef();
 
   const [cidade, setCidade] = React.useState('');
 
   const phone = useForm();
-  const cnpj = useForm();
-  const cep = useForm();
+  const CNPJ = useForm();
+  const CEP = useForm();
 
   React.useEffect(() => {
     GET_COMPANIES(setCompanies);
-  }, [setCompanies]);
+  }, []);
 
   function filterCompanies() {}
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    setAddCompany(false);
-    POST_COMPANY(cnpj.value);
+    console.log('Enviou formulário');
+    console.log(CNPJ);
+
+    const {
+      nome,
+      fantasia,
+      cnpj,
+      abertura,
+      email,
+      telefone,
+      municipio,
+      uf,
+      cep,
+    } = await GET_CNPJ(CNPJ.value);
+    try {
+      const data = await POST_COMPANY({
+        nome,
+        fantasia,
+        cnpj,
+        abertura,
+        email,
+        telefone,
+        municipio,
+        uf,
+        cep,
+      });
+      setCompanies([...companies, data]);
+    } catch (err) {
+      alert('Erro em adicionar Empresa');
+    }
+
     phone.setValue('');
-    cnpj.setValue('');
-    cep.setValue('');
-    GET_COMPANIES(setCompanies);
+    CNPJ.setValue('');
+    CEP.setValue('');
+    setAddCompany(false);
+  }
+
+  function clickDelete(id) {
+    const companiExists = companies.findIndex((company) => company.cnpj === id);
+    if (companiExists === -1) {
+      return alert('Companhia não existe.');
+    }
+    DLETE_COMPANY(companies[companiExists].id);
+    const aux = companies.filter((comany) => comany.cnpj !== id);
+    setCompanies(aux);
   }
 
   return (
@@ -76,28 +116,36 @@ const Home = () => {
 
           {addCompany && (
             <AddCompany
-              inputs={{ phone, cnpj, cep }}
+              inputs={{ phone, CNPJ, CEP }}
               handleSubmit={handleSubmit}
             />
           )}
 
           <div className={styles.container}>
-            {companies.map((company) => (
-              <div className={styles.company} key={company.id}>
-                <h4>{company.fantasy_name}</h4>
-                <p>{company.name}</p>
-                <p>CNPJ: {company.cnpj}</p>
-                <p>Email: {company.email}</p>
-                <p>Contato: {company.telephone}</p>
-                <p>
-                  {company.city} / {company.state} - {company.zip_code}
-                </p>
-                <div className={styles.crud}>
-                  <ActionButton type="edit" onClick={EDIT_COMPANY()} />
-                  <ActionButton type="delete" onClick={DLETE_COMPANY()} />
+            {companies &&
+              companies.map((company) => (
+                <div className={styles.company} key={company.cnpj}>
+                  <h4>{company.fantasy_name}</h4>
+                  <p>{company.name}</p>
+                  <p>CNPJ: {company.cnpj}</p>
+                  <p>Abertura: {converteAbertura(company.opening_date)}</p>
+                  <p>Email: {company.email}</p>
+                  <p>Contato: {company.telephone}</p>
+                  <p>
+                    {company.city} / {company.state} - {company.zip_code}
+                  </p>
+                  <div className={styles.crud}>
+                    <ActionButton
+                      type="edit"
+                      onClick={() => EDIT_COMPANY(company)}
+                    />
+                    <ActionButton
+                      type="delete"
+                      onClick={() => clickDelete(company.cnpj)}
+                    />
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
       </section>

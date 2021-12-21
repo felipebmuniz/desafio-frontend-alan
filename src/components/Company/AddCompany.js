@@ -17,9 +17,9 @@ const AddCompany = ({ inputs, handleSubmit }) => {
         label="CNPJ"
         name="cnpj"
         mask="99.999.999/9999-99"
-        {...inputs.cnpj}
+        {...inputs.CNPJ}
       />
-      <MaskInput label="CEP" name="cep" mask="99999-999" {...inputs.cep} />
+      <MaskInput label="CEP" name="cep" mask="99999-999" {...inputs.CEP} />
       <Button>Cadastrar</Button>
     </form>
   );

@@ -12,48 +12,46 @@ export async function GET_COMPANIES(setValue) {
 
 export async function GET_CNPJ(value) {
   const strCNPJ = onlyNumbers(value);
+  console.log(strCNPJ);
   const { data } = await axios
-    .get(
-      `https://cors-anywhere.herokuapp.com/https://www.receitaws.com.br/v1/cnpj/${strCNPJ}`,
-    )
+    .get(`https://www.receitaws.com.br/v1/cnpj/${strCNPJ}`)
     .catch((err) => {
       console.error('ops! ocorreu um erro' + err);
     });
 
+  console.log(data);
   return data;
 }
 
-export async function POST_COMPANY(value) {
-  const {
-    nome,
-    fantasia,
-    cnpj,
-    abertura,
-    email,
-    telefone,
-    municipio,
-    uf,
-    cep,
-  } = await GET_CNPJ(value);
-
-  await api
-    .post('companies', {
-      name: nome,
-      fantasy_name: fantasia,
-      cnpj: cnpj,
-      opening_date: abertura,
-      email: email,
-      telephone: telefone,
-      city: municipio,
-      state: uf,
-      zip_code: cep,
-    })
-    .then((response) => console.log(response))
-    .catch((err) => {
-      console.error('ops! ocorreu um erro' + err);
-    });
+// 33.659.245/0001-84
+export async function POST_COMPANY({
+  nome,
+  fantasia,
+  cnpj,
+  abertura,
+  email,
+  telefone,
+  municipio,
+  uf,
+  cep,
+}) {
+  const response = await api.post('companies', {
+    name: nome,
+    fantasy_name: fantasia,
+    cnpj: cnpj,
+    opening_date: abertura.split('/').reverse().join('-'),
+    email: email,
+    telephone: telefone,
+    city: municipio,
+    state: uf,
+    zip_code: cep,
+  });
+  return response.data;
 }
 
 export function EDIT_COMPANY(value) {}
 
-export function DLETE_COMPANY(value) {}
+export async function DLETE_COMPANY(id) {
+  const response = await api.delete(`companies/${id}`);
+  console.log(response);
+}
