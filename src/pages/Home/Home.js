@@ -140,6 +140,26 @@ const Home = () => {
     <section className="animeLeft">
       <Header />
       <section className={styles.home}>
+        {addCompany && (
+          <AddCompany
+            id="addcompany"
+            inputs={{
+              phone,
+              CNPJ,
+              CEP,
+              fantasy,
+              name,
+              email,
+              opening,
+              city,
+              UF,
+            }}
+            handleSubmit={actionAdd ? handleSubmit : handleSubmitEdit}
+            state={state}
+            action={actionAdd}
+            setModal={setAddCompany}
+          />
+        )}
         <h1 className="title">Suas Companhias</h1>
         <h2>Listagem das Companhias</h2>
         <div className={styles.filter}>
@@ -174,26 +194,6 @@ const Home = () => {
               clearForm();
             }}
           />
-
-          {addCompany && (
-            <AddCompany
-              inputs={{
-                phone,
-                CNPJ,
-                CEP,
-                fantasy,
-                name,
-                email,
-                opening,
-                city,
-                UF,
-              }}
-              handleSubmit={actionAdd ? handleSubmit : handleSubmitEdit}
-              state={state}
-              action={actionAdd}
-              setModal={setAddCompany}
-            />
-          )}
 
           <div className={styles.container}>
             {companies &&

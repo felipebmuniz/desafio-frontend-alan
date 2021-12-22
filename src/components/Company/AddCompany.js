@@ -88,7 +88,9 @@ const AddCompany = ({ inputs, handleSubmit, state, action, setModal }) => {
           )}
         </div>
 
-        {action ? <Button>Cadastrar</Button> : <Button>Edidar</Button>}
+        <div className={styles.button}>
+          {action ? <Button>Cadastrar</Button> : <Button>Edidar</Button>}
+        </div>
       </form>
     </section>
   );

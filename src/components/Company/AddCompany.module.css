@@ -1,21 +1,25 @@
-/* .modal {
+.modal {
   position: fixed;
   display: flex;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-} */
-
-.addCompany {
-  display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  visibility: visible;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 10;
+}
+
+.addCompany {
+  display: grid;
+  grid-template-columns: 1;
   background-color: var(--color-form);
   padding: 1rem;
-  margin: 1rem;
   border-radius: 0.2rem;
   box-shadow: 0 0 0 3px var(--color-bg), 0 0 0 4px gray;
+  overflow: auto;
   transition: 0.1s;
 }
 
@@ -46,8 +50,11 @@
   margin: 1rem;
 }
 
-.addCompany:hover {
-  outline: none;
+.button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 @media (max-width: 40rem) {
@@ -56,5 +63,9 @@
   }
   .close p {
     display: none;
+  }
+  .addCompany {
+    height: auto;
+    overflow-y: auto;
   }
 }
