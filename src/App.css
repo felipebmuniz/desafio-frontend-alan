@@ -20,6 +20,7 @@ body {
   --color-shadow: #ff6363;
   --color-border: #ec3d3d;
   --color-label: #eee;
+  --color-four: #3f3d56
   font-family: var(--type-first);
 }
 

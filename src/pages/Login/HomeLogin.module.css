@@ -8,8 +8,8 @@
 .hello::before {
   content: '';
   display: block;
-  background: url('../../assets/undraw_creation_process.svg') no-repeat center
-    center;
+  background: url('../../assets/undraw_in_the_office_re_jtgc.svg') no-repeat
+    center center;
   background-size: contain;
 }
 

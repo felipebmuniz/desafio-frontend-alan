@@ -30,6 +30,39 @@
   box-shadow: 0 0 0 3px var(--color-shadow), 0 0 0 4px var(--color-border);
 }
 
+.add {
+  background: green;
+}
+
+.add:hover,
+.add:focus {
+  outline: none;
+  color: var(--color-form);
+  box-shadow: 0 0 0 3px lime, 0 0 0 4px limegreen;
+}
+
+.edit {
+  background: goldenrod;
+}
+
+.edit:hover,
+.edit:focus {
+  outline: none;
+  color: var(--color-form);
+  box-shadow: 0 0 0 3px yellow, 0 0 0 4px darkgoldenrod;
+}
+
+.delete {
+  background: crimson;
+}
+
+.delete:hover,
+.delete:focus {
+  outline: none;
+  color: var(--color-form);
+  box-shadow: 0 0 0 3px red, 0 0 0 4px maroon;
+}
+
 @media (max-width: 40rem) {
   .addContainer {
     justify-content: center;

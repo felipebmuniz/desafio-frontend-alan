@@ -12,7 +12,6 @@ export async function GET_COMPANIES(setValue) {
 
 export async function GET_CNPJ(value) {
   const strCNPJ = onlyNumbers(value);
-  console.log(strCNPJ);
   const { data } = await axios
     .get(`https://www.receitaws.com.br/v1/cnpj/${strCNPJ}`)
     .catch((err) => {
@@ -23,7 +22,7 @@ export async function GET_CNPJ(value) {
   return data;
 }
 
-// 33.659.245/0001-84
+// 33.659.245/0001-84 GF ROBOTICA
 export async function POST_COMPANY({
   nome,
   fantasia,
@@ -49,9 +48,35 @@ export async function POST_COMPANY({
   return response.data;
 }
 
-export function EDIT_COMPANY(value) {}
+export async function EDIT_COMPANY(
+  {
+    name,
+    fantasy_name,
+    cnpj,
+    opening_date,
+    email,
+    telephone,
+    city,
+    state,
+    zip_code,
+  },
+  id,
+) {
+  const response = await api.put(`companies/${id}`, {
+    name,
+    fantasy_name,
+    cnpj,
+    opening_date: opening_date.split('/').reverse().join('-'),
+    email: email,
+    telephone,
+    city,
+    state,
+    zip_code,
+  });
+  return response.data;
+}
 
-export async function DLETE_COMPANY(id) {
+export async function DELETE_COMPANY(id) {
   const response = await api.delete(`companies/${id}`);
   console.log(response);
 }

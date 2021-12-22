@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from './services/api';
+// import jwt_decode from 'jwt-decode';
 
 export const UserContext = React.createContext();
 
@@ -20,6 +21,9 @@ export const UserStrorage = ({ children }) => {
       setError(null);
       setLoading(false);
       setLogin(false);
+      // var token = window.localStorage.getItem('token');
+      // var decode = jwt_decode(token, { header: true });
+      // console.log(decode);
       window.localStorage.removeItem('token');
       navigate('/');
     },

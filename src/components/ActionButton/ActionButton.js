@@ -6,25 +6,52 @@ const ActionButton = ({ type, onClick }) => {
   function typeButton() {
     switch (type) {
       case 'filter':
-        return <BiFilterAlt />;
+        return (
+          <div className={styles.addContainer}>
+            <span className={styles.ActionBtn} onClick={onClick}>
+              <BiFilterAlt />
+            </span>
+          </div>
+        );
       case 'add':
-        return <BiAddToQueue />;
+        return (
+          <div className={styles.addContainer}>
+            <span
+              className={`${styles.ActionBtn} ${styles.add}`}
+              onClick={onClick}
+            >
+              <BiAddToQueue />
+            </span>
+          </div>
+        );
       case 'edit':
-        return <BiEdit className={styles.edit} />;
+        return (
+          <div className={styles.addContainer}>
+            <span
+              className={`${styles.ActionBtn} ${styles.edit}`}
+              onClick={onClick}
+            >
+              <BiEdit />
+            </span>
+          </div>
+        );
       case 'delete':
-        return <BiTrashAlt className={styles.delete} />;
+        return (
+          <div className={styles.addContainer}>
+            <span
+              className={`${styles.ActionBtn} ${styles.delete}`}
+              onClick={onClick}
+            >
+              <BiTrashAlt />
+            </span>
+          </div>
+        );
       default:
         return null;
     }
   }
 
-  return (
-    <div className={styles.addContainer}>
-      <span className={styles.ActionBtn} onClick={onClick}>
-        {typeButton()}
-      </span>
-    </div>
-  );
+  return typeButton();
 };
 
 export default ActionButton;

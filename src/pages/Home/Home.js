@@ -4,7 +4,7 @@ import Header from '../../components/Header/Header';
 import ActionButton from '../../components/ActionButton/ActionButton';
 import useForm from '../../hooks/useForm';
 import {
-  DLETE_COMPANY,
+  DELETE_COMPANY,
   EDIT_COMPANY,
   GET_CNPJ,
   GET_COMPANIES,
@@ -24,9 +24,44 @@ const Home = () => {
 
   const [cidade, setCidade] = React.useState('');
 
+  const [state, setState] = React.useState({ disabled: false });
+  const [actionAdd, setActionAdd] = React.useState(false);
+
+  // const [mof, setCompanyEdit] = React.useState(null);
+
   const phone = useForm();
   const CNPJ = useForm();
   const CEP = useForm();
+  const fantasy = useForm();
+  const name = useForm();
+  const email = useForm();
+  const opening = useForm();
+  const city = useForm();
+  const UF = useForm();
+
+  function clearForm() {
+    CNPJ.setValue('');
+    phone.setValue('');
+    CEP.setValue('');
+    fantasy.setValue('');
+    name.setValue('');
+    email.setValue('');
+    opening.setValue('');
+    city.setValue('');
+    UF.setValue('');
+  }
+
+  function editForm(companyEdit) {
+    CNPJ.setValue(companyEdit.cnpj);
+    phone.setValue(companyEdit.telephone);
+    CEP.setValue(companyEdit.zip_code);
+    fantasy.setValue(companyEdit.fantasy_name);
+    name.setValue(companyEdit.name);
+    email.setValue(companyEdit.email);
+    opening.setValue(companyEdit.opening_date);
+    city.setValue(companyEdit.city);
+    UF.setValue(companyEdit.state);
+  }
 
   React.useEffect(() => {
     GET_COMPANIES(setCompanies);
@@ -36,9 +71,6 @@ const Home = () => {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    console.log('Enviou formulário');
-    console.log(CNPJ);
-
     const {
       nome,
       fantasia,
@@ -73,12 +105,33 @@ const Home = () => {
     setAddCompany(false);
   }
 
+  async function handleSubmitEdit(event) {
+    event.preventDefault();
+    try {
+      const data = EDIT_COMPANY();
+      console.log(data);
+      // setCompanies([...companies, data]);
+    } catch (err) {
+      alert('Erro em adicionar Empresa');
+    }
+    clearForm();
+    setAddCompany(false);
+  }
+
+  function clickEdit(company) {
+    setState({ disabled: false });
+    setActionAdd(false);
+    setAddCompany(true);
+    editForm(company);
+  }
+
   function clickDelete(id) {
     const companiExists = companies.findIndex((company) => company.cnpj === id);
     if (companiExists === -1) {
       return alert('Companhia não existe.');
     }
-    DLETE_COMPANY(companies[companiExists].id);
+    console.log(companies[companiExists]);
+    DELETE_COMPANY(companies[companiExists].id);
     const aux = companies.filter((comany) => comany.cnpj !== id);
     setCompanies(aux);
   }
@@ -112,12 +165,33 @@ const Home = () => {
         </div>
 
         <div className={styles.content}>
-          <ActionButton type="add" onClick={() => setAddCompany(!addCompany)} />
+          <ActionButton
+            type="add"
+            onClick={() => {
+              setAddCompany(true);
+              setState({ disabled: true });
+              setActionAdd(true);
+              clearForm();
+            }}
+          />
 
           {addCompany && (
             <AddCompany
-              inputs={{ phone, CNPJ, CEP }}
-              handleSubmit={handleSubmit}
+              inputs={{
+                phone,
+                CNPJ,
+                CEP,
+                fantasy,
+                name,
+                email,
+                opening,
+                city,
+                UF,
+              }}
+              handleSubmit={actionAdd ? handleSubmit : handleSubmitEdit}
+              state={state}
+              action={actionAdd}
+              setModal={setAddCompany}
             />
           )}
 
@@ -137,7 +211,7 @@ const Home = () => {
                   <div className={styles.crud}>
                     <ActionButton
                       type="edit"
-                      onClick={() => EDIT_COMPANY(company)}
+                      onClick={() => clickEdit(company)}
                     />
                     <ActionButton
                       type="delete"

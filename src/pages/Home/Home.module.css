@@ -17,13 +17,9 @@
   grid-template-rows: auto auto;
 }
 
-.none {
-  display: none;
-}
-
 .container {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: 1fr 1fr 1fr;
   border-top: 2px solid var(--color-bg);
   border-bottom: 2px solid var(--color-bg);
   border-radius: 0.2rem;
@@ -43,7 +39,7 @@
 }
 
 .company:hover {
-  cursor: pointer;
+  cursor: default;
   outline: none;
   background-color: var(--color-form);
   box-shadow: 0 0 0 3px var(--color-shadow), 0 0 0 4px var(--color-border);
@@ -62,13 +58,5 @@
   }
   .filter {
     grid-template-columns: 1fr;
-  }
-  .addContainer {
-    justify-content: center;
-    padding-right: 0;
-  }
-
-  .ActionBtn {
-    width: 50%;
   }
 }

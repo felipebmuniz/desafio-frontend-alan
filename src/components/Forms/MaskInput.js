@@ -16,6 +16,7 @@ const MaskInput = ({ label, name, mask, value, onChange, onBlur, error }) => {
         value={value}
         onChange={onChange}
         onBlur={onBlur}
+        required
       />
       {error && <p className={styles.error}>{error}</p>}
     </div>

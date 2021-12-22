@@ -14,6 +14,7 @@
   color: var(--color-form);
   font-size: 1.2rem;
   cursor: pointer;
+  font-family: var(--type-second);
 }
 
 .header span {
