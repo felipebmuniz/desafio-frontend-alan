@@ -8,7 +8,6 @@ import { UserContext } from '../../UserContext';
 
 const Login = () => {
   const { login } = React.useContext(UserContext);
-
   if (login === true) return <Navigate to="/home" />;
   return (
     <section className={`${styles.login} animeLeft`}>
