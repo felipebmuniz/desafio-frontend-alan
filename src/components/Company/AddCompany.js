@@ -67,7 +67,8 @@ const AddCompany = ({ inputs, handleSubmit, state, action, setModal }) => {
                 label="Data de Abertura"
                 type="data"
                 name="opening"
-                disabled={state.disabled ? 'disabled' : ''}
+                disabled
+                // disabled={state.disabled ? 'disabled' : ''}
                 {...inputs.opening}
               />
               <Input

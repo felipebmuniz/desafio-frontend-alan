@@ -27,7 +27,7 @@ const Home = () => {
   const [state, setState] = React.useState({ disabled: false });
   const [actionAdd, setActionAdd] = React.useState(false);
 
-  // const [mof, setCompanyEdit] = React.useState(null);
+  const [companyEdit, setCompanyEdit] = React.useState(null);
 
   const phone = useForm();
   const CNPJ = useForm();
@@ -107,13 +107,32 @@ const Home = () => {
 
   async function handleSubmitEdit(event) {
     event.preventDefault();
-    try {
-      const data = EDIT_COMPANY();
-      console.log(data);
-      // setCompanies([...companies, data]);
-    } catch (err) {
-      alert('Erro em adicionar Empresa');
+    const companiExists = companies.findIndex(
+      (company) => company.cnpj === companyEdit.cnpj,
+    );
+    if (companiExists === -1) {
+      return alert('Companhia não existe.');
     }
+    const data = await EDIT_COMPANY(
+      {
+        name: name.value,
+        fantasy_name: fantasy.value,
+        cnpj: CNPJ.value,
+        opening_date: opening.value,
+        email: email.value,
+        telephone: phone.value,
+        city: city.value,
+        state: UF.value,
+        zip_code: CEP.value,
+      },
+      companyEdit.id,
+    );
+    const aux = companies.map((company) =>
+      company.id === data.id ? data : company,
+    );
+
+    setCompanies(aux);
+    setCompanyEdit(null);
     clearForm();
     setAddCompany(false);
   }
@@ -122,6 +141,7 @@ const Home = () => {
     setState({ disabled: false });
     setActionAdd(false);
     setAddCompany(true);
+    setCompanyEdit(company);
     editForm(company);
   }
 
@@ -130,7 +150,7 @@ const Home = () => {
     if (companiExists === -1) {
       return alert('Companhia não existe.');
     }
-    console.log(companies[companiExists]);
+
     DELETE_COMPANY(companies[companiExists].id);
     const aux = companies.filter((comany) => comany.cnpj !== id);
     setCompanies(aux);

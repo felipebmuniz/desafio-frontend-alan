@@ -18,7 +18,6 @@ export async function GET_CNPJ(value) {
       console.error('ops! ocorreu um erro' + err);
     });
 
-  console.log(data);
   return data;
 }
 
@@ -77,6 +76,5 @@ export async function EDIT_COMPANY(
 }
 
 export async function DELETE_COMPANY(id) {
-  const response = await api.delete(`companies/${id}`);
-  console.log(response);
+  await api.delete(`companies/${id}`);
 }
