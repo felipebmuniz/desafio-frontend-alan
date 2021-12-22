@@ -3,6 +3,7 @@ import Select from '../../components/Forms/Select';
 import Header from '../../components/Header/Header';
 import ActionButton from '../../components/ActionButton/ActionButton';
 import useForm from '../../hooks/useForm';
+import AddCompany from '../../components/Company/AddCompany';
 import {
   DELETE_COMPANY,
   EDIT_COMPANY,
@@ -10,8 +11,11 @@ import {
   GET_COMPANIES,
   POST_COMPANY,
 } from '../../services/endpointsCompany';
-import AddCompany from '../../components/Company/AddCompany';
+import { GET_ESTADOS, GET_MUNICIPIOS } from '../../services/endpointsIBGE';
+import { CgCloseR } from 'react-icons/cg';
 import styles from './Home.module.css';
+import stylesInp from '../../components/Forms/Input.module.css';
+import stylesBtn from '../../components/Company/AddCompany.module.css';
 
 function converteAbertura(opening) {
   const reData = opening.split('T').slice(0, -1);
@@ -22,12 +26,31 @@ const Home = () => {
   const [companies, setCompanies] = React.useState([]);
   const [addCompany, setAddCompany] = React.useState(false);
 
-  const [cidade, setCidade] = React.useState('');
+  const [cidades, setCidades] = React.useState(null);
+  const [estados, setEstados] = React.useState(null);
+  const [selectEstado, setSelectEstado] = React.useState('');
+  const [selectCidade, setSelectCidade] = React.useState('');
 
   const [state, setState] = React.useState({ disabled: false });
   const [actionAdd, setActionAdd] = React.useState(false);
 
   const [companyEdit, setCompanyEdit] = React.useState(null);
+
+  const [busca, setBusca] = React.useState('');
+
+  const [filter, setFilter] = React.useState(null);
+
+  const buscaCompanies = React.useMemo(() => {
+    return busca === ''
+      ? filter
+        ? filter
+        : companies
+      : companies.filter((company) =>
+          company.name.toLowerCase().includes(busca.toLowerCase()),
+        );
+  }, [busca, companies, filter]);
+
+  const [activeClose, setActiveClose] = React.useState(null);
 
   const phone = useForm();
   const CNPJ = useForm();
@@ -65,9 +88,39 @@ const Home = () => {
 
   React.useEffect(() => {
     GET_COMPANIES(setCompanies);
+    GET_ESTADOS(setEstados);
   }, []);
 
-  function filterCompanies() {}
+  React.useEffect(() => {
+    GET_MUNICIPIOS(setCidades, selectEstado);
+  }, [selectEstado]);
+
+  function filterCompanies() {
+    if (selectEstado === '' && selectCidade === '') {
+      setFilter(companies);
+    } else if (selectEstado !== '' && selectCidade !== '') {
+      const filterCompany = companies.filter(
+        (company) =>
+          company.state === selectEstado &&
+          company.city.toLowerCase() === selectCidade.toLowerCase(),
+      );
+      setFilter(filterCompany);
+    } else if (selectEstado !== '' && selectCidade === '') {
+      const filterCompany = companies.filter(
+        (company) => company.state === selectEstado,
+      );
+      setFilter(filterCompany);
+    } else {
+      const filterCompany = companies.filter(
+        (company) => company.city.toLowerCase() === selectCidade.toLowerCase(),
+      );
+      setFilter(filterCompany);
+    }
+
+    selectEstado === '' && selectCidade === ''
+      ? setActiveClose(null)
+      : setActiveClose(true);
+  }
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -146,14 +199,19 @@ const Home = () => {
   }
 
   function clickDelete(id) {
-    const companiExists = companies.findIndex((company) => company.cnpj === id);
-    if (companiExists === -1) {
-      return alert('Companhia não existe.');
-    }
+    const conf = window.confirm('Deseja deletar a companhia?');
+    if (conf) {
+      const companiExists = companies.findIndex(
+        (company) => company.cnpj === id,
+      );
+      if (companiExists === -1) {
+        return alert('Companhia não existe.');
+      }
 
-    DELETE_COMPANY(companies[companiExists].id);
-    const aux = companies.filter((comany) => comany.cnpj !== id);
-    setCompanies(aux);
+      DELETE_COMPANY(companies[companiExists].id);
+      const aux = companies.filter((comany) => comany.cnpj !== id);
+      setCompanies(aux);
+    }
   }
 
   return (
@@ -180,66 +238,98 @@ const Home = () => {
             setModal={setAddCompany}
           />
         )}
+
         <h1 className="title">Suas Companhias</h1>
         <h2>Listagem das Companhias</h2>
+
         <div className={styles.filter}>
-          <Select
-            type="Cidade"
-            options={['Ibiapina', 'Sobral', 'Ubajara']}
-            value={cidade}
-            setValue={setCidade}
-          />
-          <Select
-            type="Estado"
-            options={['Ceará', 'Rio Grande do Norte', 'Piauí']}
-            value={cidade}
-            setValue={setCidade}
-          />
-          <Select
-            type="Região"
-            options={['Nordeste', 'Sudeste', 'Norte']}
-            value={cidade}
-            setValue={setCidade}
-          />
-          <ActionButton type="filter" onClick={filterCompanies} />
+          {estados && (
+            <Select
+              type="Estado"
+              options={estados}
+              value={selectEstado}
+              setValue={setSelectEstado}
+            />
+          )}
+
+          {cidades && (
+            <Select
+              type="Cidade"
+              options={cidades}
+              value={selectCidade}
+              setValue={setSelectCidade}
+            />
+          )}
+
+          <div className={styles.closeFilter}>
+            <ActionButton type="filter" onClick={filterCompanies} />
+            {activeClose && (
+              <div className={stylesBtn.btnClose}>
+                <span
+                  className={stylesBtn.close}
+                  onClick={() => {
+                    setSelectCidade('');
+                    setSelectEstado('');
+                    setFilter(companies);
+                    setActiveClose(false);
+                  }}
+                >
+                  {' '}
+                  <CgCloseR />
+                  <p>Limpar</p>
+                </span>
+              </div>
+            )}
+          </div>
         </div>
 
         <div className={styles.content}>
-          <ActionButton
-            type="add"
-            onClick={() => {
-              setAddCompany(true);
-              setState({ disabled: true });
-              setActionAdd(true);
-              clearForm();
-            }}
-          />
+          <div className={styles.areaAction}>
+            <div className={styles.inputArea}>
+              <input
+                type="text"
+                value={busca}
+                onChange={({ target }) => setBusca(target.value)}
+                className={stylesInp.input}
+                placeholder="Busca pelo nome da Companhia..."
+              />
+            </div>
+
+            <ActionButton
+              type="add"
+              onClick={() => {
+                setAddCompany(true);
+                setState({ disabled: true });
+                setActionAdd(true);
+                clearForm();
+              }}
+            />
+          </div>
 
           <div className={styles.container}>
-            {companies &&
-              companies.map((company) => (
-                <div className={styles.company} key={company.cnpj}>
-                  <h4>{company.fantasy_name}</h4>
-                  <p>{company.name}</p>
-                  <p>CNPJ: {company.cnpj}</p>
-                  <p>Abertura: {converteAbertura(company.opening_date)}</p>
-                  <p>Email: {company.email}</p>
-                  <p>Contato: {company.telephone}</p>
-                  <p>
-                    {company.city} / {company.state} - {company.zip_code}
-                  </p>
-                  <div className={styles.crud}>
-                    <ActionButton
-                      type="edit"
-                      onClick={() => clickEdit(company)}
-                    />
-                    <ActionButton
-                      type="delete"
-                      onClick={() => clickDelete(company.cnpj)}
-                    />
-                  </div>
+            {buscaCompanies.map((company) => (
+              <div className={styles.company} key={company.cnpj}>
+                <h4>{company.fantasy_name}</h4>
+                <p>{company.name}</p>
+                <p>CNPJ: {company.cnpj}</p>
+                <p>Abertura: {converteAbertura(company.opening_date)}</p>
+                <p>Email: {company.email}</p>
+                <p>Contato: {company.telephone}</p>
+                <p>
+                  {company.city} / {company.state} - {company.zip_code}
+                </p>
+                <div className={styles.crud}>
+                  <ActionButton
+                    type="edit"
+                    onClick={() => clickEdit(company)}
+                  />
+                  <ActionButton
+                    type="delete"
+                    onClick={() => clickDelete(company.cnpj)}
+                  />
                 </div>
-              ))}
+              </div>
+            ))}
           </div>
         </div>
       </section>

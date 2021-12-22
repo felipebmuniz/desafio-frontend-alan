@@ -8,13 +8,34 @@
 
 .filter {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: auto auto auto;
   padding: 1rem;
+}
+
+.closeFilter {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .content {
   display: grid;
   grid-template-rows: auto auto;
+}
+
+.areaAction {
+  display: grid;
+  grid-template-columns: auto 0.35fr;
+}
+
+.inputArea {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-end;
+}
+.inputArea input {
+  margin-left: 4rem;
+  max-width: 30rem;
 }
 
 .container {
@@ -58,5 +79,15 @@
   }
   .filter {
     grid-template-columns: 1fr;
+  }
+  .closeFilter {
+    grid-template-columns: 1fr 0;
+  }
+  .inputArea input {
+    margin-left: 2.5rem;
+    justify-content: center;
+  }
+  .areaAction {
+    margin-right: 2rem;
   }
 }

@@ -9,12 +9,13 @@ const Select = ({ type, options, value, setValue }) => {
         value={value}
         onChange={({ target }) => setValue(target.value)}
       >
-        <option value="" disabled>
-          {type}
-        </option>
+        <option value="">{type}</option>
         {options.map((option) => (
-          <option key={option} value={option}>
-            {option}
+          <option
+            key={option.id}
+            value={type === 'Estado' ? option.sigla : option.nome}
+          >
+            {option.nome}
           </option>
         ))}
       </select>

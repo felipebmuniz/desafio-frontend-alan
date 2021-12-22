@@ -37,9 +37,9 @@ const LoginAccess = () => {
         )}
       </form>
 
-      <Link className={styles.perdeu} to="/Login">
+      {/* <Link className={styles.perdeu} to="/Login">
         Perdeu a senha?
-      </Link>
+      </Link> */}
 
       <div className={styles.section}>
         <span>

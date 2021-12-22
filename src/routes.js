@@ -11,7 +11,7 @@ const routes = () => {
     <Routes>
       <Route path="/" element={<HomeLogin />} />
       <Route
-        path="home/*"
+        path="home"
         element={
           <ProtectedRoute>
             <Home />

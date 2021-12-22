@@ -8,7 +8,6 @@ export const UserContext = React.createContext();
 export const UserStrorage = ({ children }) => {
   const [data, setData] = React.useState(null);
   const [session, setSession] = React.useState(null);
-  // const [userSession, SetUserSession] = React.useState(null);
   const [login, setLogin] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
@@ -37,9 +36,7 @@ export const UserStrorage = ({ children }) => {
         try {
           setError(null);
           setLoading(true);
-          // if (!response.ok) throw new Error('Token inválido');
           await getUser(token);
-          // sessionUser();
         } catch (err) {
           userLogout();
         } finally {
@@ -85,11 +82,6 @@ export const UserStrorage = ({ children }) => {
     }
   }
 
-  // function sessionUser() {
-  //   const user = data.filter((user) => user.email === session.email);
-  //   SetUserSession(user);
-  // }
-
   return (
     <UserContext.Provider
       value={{
@@ -97,7 +89,6 @@ export const UserStrorage = ({ children }) => {
         userLogout,
         data,
         session,
-        // userSession,
         login,
         loading,
         error,
